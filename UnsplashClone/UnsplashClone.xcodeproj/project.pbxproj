@@ -14,6 +14,10 @@
 		34C5052525D6753C0014EEE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C5052425D6753C0014EEE4 /* Assets.xcassets */; };
 		34C5052825D6753C0014EEE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C5052625D6753C0014EEE4 /* LaunchScreen.storyboard */; };
 		34C5053B25D677660014EEE4 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 34C5053A25D677660014EEE4 /* .swiftlint.yml */; };
+		34C5054825D67F6C0014EEE4 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5054725D67F6C0014EEE4 /* Scene.swift */; };
+		34C5054C25D6808E0014EEE4 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5054B25D6808E0014EEE4 /* SceneCoordinator.swift */; };
+		34C5054F25D680A00014EEE4 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5054E25D680A00014EEE4 /* SceneCoordinatorType.swift */; };
+		34C5055225D681750014EEE4 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5055125D681750014EEE4 /* TransitionModel.swift */; };
 		E342CC9146C440E65C704687 /* Pods_UnsplashClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1A3AB2882198D37EA0DE1A /* Pods_UnsplashClone.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +32,10 @@
 		34C5052725D6753C0014EEE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34C5052925D6753C0014EEE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C5053A25D677660014EEE4 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		34C5054725D67F6C0014EEE4 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		34C5054B25D6808E0014EEE4 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
+		34C5054E25D680A00014EEE4 /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
+		34C5055125D681750014EEE4 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
 		5567FDD3F576F21EE0714D00 /* Pods-UnsplashClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnsplashClone.debug.xcconfig"; path = "Target Support Files/Pods-UnsplashClone/Pods-UnsplashClone.debug.xcconfig"; sourceTree = "<group>"; };
 		D07905EB397601CC8120FB12 /* Pods-UnsplashClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnsplashClone.release.xcconfig"; path = "Target Support Files/Pods-UnsplashClone/Pods-UnsplashClone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,15 +74,59 @@
 		34C5051A25D6753A0014EEE4 /* UnsplashClone */ = {
 			isa = PBXGroup;
 			children = (
+				34C5054225D67BAF0014EEE4 /* ViewController */,
+				34C5054425D67E010014EEE4 /* ViewModel */,
+				34C5054525D67E130014EEE4 /* Model */,
+				34C5054325D67BC50014EEE4 /* Scene */,
+				34C5054625D67E7A0014EEE4 /* Service */,
 				34C5051B25D6753A0014EEE4 /* AppDelegate.swift */,
 				34C5051D25D6753A0014EEE4 /* SceneDelegate.swift */,
-				34C5051F25D6753A0014EEE4 /* ViewController.swift */,
-				34C5052125D6753A0014EEE4 /* Main.storyboard */,
 				34C5052425D6753C0014EEE4 /* Assets.xcassets */,
 				34C5052625D6753C0014EEE4 /* LaunchScreen.storyboard */,
 				34C5052925D6753C0014EEE4 /* Info.plist */,
 			);
 			path = UnsplashClone;
+			sourceTree = "<group>";
+		};
+		34C5054225D67BAF0014EEE4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34C5051F25D6753A0014EEE4 /* ViewController.swift */,
+				34C5052125D6753A0014EEE4 /* Main.storyboard */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		34C5054325D67BC50014EEE4 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				34C5054725D67F6C0014EEE4 /* Scene.swift */,
+				34C5054B25D6808E0014EEE4 /* SceneCoordinator.swift */,
+				34C5054E25D680A00014EEE4 /* SceneCoordinatorType.swift */,
+				34C5055125D681750014EEE4 /* TransitionModel.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		34C5054425D67E010014EEE4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		34C5054525D67E130014EEE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		34C5054625D67E7A0014EEE4 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		79C4CB22D447878E8EC22F9A /* Frameworks */ = {
@@ -228,9 +280,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34C5054825D67F6C0014EEE4 /* Scene.swift in Sources */,
+				34C5054C25D6808E0014EEE4 /* SceneCoordinator.swift in Sources */,
 				34C5052025D6753A0014EEE4 /* ViewController.swift in Sources */,
+				34C5055225D681750014EEE4 /* TransitionModel.swift in Sources */,
 				34C5051C25D6753A0014EEE4 /* AppDelegate.swift in Sources */,
 				34C5051E25D6753A0014EEE4 /* SceneDelegate.swift in Sources */,
+				34C5054F25D680A00014EEE4 /* SceneCoordinatorType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
