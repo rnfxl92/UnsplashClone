@@ -29,7 +29,7 @@ extension UnsplashEndPoint: EndPoint {
     }
     
     var headers: HTTPHeaders? {
-        ["Authoriztion": "Client-ID\(UnsplashApiKey.accessKey)"]
+        ["Authorization": "Client-ID \(UnsplashApiKey.accessKey)"]
     }
     
 }

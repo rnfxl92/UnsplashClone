@@ -21,6 +21,9 @@
 		34C5055825D69E430014EEE4 /* UnsplashApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5055725D69E430014EEE4 /* UnsplashApiKey.swift */; };
 		34C5055B25D6A0A50014EEE4 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5055A25D6A0A50014EEE4 /* EndPoint.swift */; };
 		34C5055E25D6A49D0014EEE4 /* UnsplashEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5055D25D6A49D0014EEE4 /* UnsplashEndPoint.swift */; };
+		34C5056125D7EA250014EEE4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5056025D7EA250014EEE4 /* Photo.swift */; };
+		34C5056425D7ED4E0014EEE4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5056325D7ED4E0014EEE4 /* User.swift */; };
+		34C5056725D7EDED0014EEE4 /* PhotoURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5056625D7EDED0014EEE4 /* PhotoURLs.swift */; };
 		E342CC9146C440E65C704687 /* Pods_UnsplashClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1A3AB2882198D37EA0DE1A /* Pods_UnsplashClone.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +45,9 @@
 		34C5055725D69E430014EEE4 /* UnsplashApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashApiKey.swift; sourceTree = "<group>"; };
 		34C5055A25D6A0A50014EEE4 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		34C5055D25D6A49D0014EEE4 /* UnsplashEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashEndPoint.swift; sourceTree = "<group>"; };
+		34C5056025D7EA250014EEE4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		34C5056325D7ED4E0014EEE4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		34C5056625D7EDED0014EEE4 /* PhotoURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoURLs.swift; sourceTree = "<group>"; };
 		5567FDD3F576F21EE0714D00 /* Pods-UnsplashClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnsplashClone.debug.xcconfig"; path = "Target Support Files/Pods-UnsplashClone/Pods-UnsplashClone.debug.xcconfig"; sourceTree = "<group>"; };
 		D07905EB397601CC8120FB12 /* Pods-UnsplashClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnsplashClone.release.xcconfig"; path = "Target Support Files/Pods-UnsplashClone/Pods-UnsplashClone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +130,9 @@
 		34C5054525D67E130014EEE4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				34C5056025D7EA250014EEE4 /* Photo.swift */,
+				34C5056325D7ED4E0014EEE4 /* User.swift */,
+				34C5056625D7EDED0014EEE4 /* PhotoURLs.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -295,7 +304,10 @@
 				34C5055B25D6A0A50014EEE4 /* EndPoint.swift in Sources */,
 				34C5052025D6753A0014EEE4 /* ViewController.swift in Sources */,
 				34C5055225D681750014EEE4 /* TransitionModel.swift in Sources */,
+				34C5056725D7EDED0014EEE4 /* PhotoURLs.swift in Sources */,
 				34C5051C25D6753A0014EEE4 /* AppDelegate.swift in Sources */,
+				34C5056125D7EA250014EEE4 /* Photo.swift in Sources */,
+				34C5056425D7ED4E0014EEE4 /* User.swift in Sources */,
 				34C5051E25D6753A0014EEE4 /* SceneDelegate.swift in Sources */,
 				34C5055E25D6A49D0014EEE4 /* UnsplashEndPoint.swift in Sources */,
 				34C5054F25D680A00014EEE4 /* SceneCoordinatorType.swift in Sources */,
