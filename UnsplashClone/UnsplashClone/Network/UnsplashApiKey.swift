@@ -9,5 +9,5 @@ import Foundation
 
 enum UnsplashApiKey: String {
     case accessKey = "QpE3Vw6rnjwniaRBe31oP1wIfL1GX3LFvdovh1JyA8g"
-    case SecretKey = "BhmBgGtcmQd5HUD53p6sN7KEfXSPnCJNkplT6vwT5SU"
+    case secretKey = "BhmBgGtcmQd5HUD53p6sN7KEfXSPnCJNkplT6vwT5SU"
 }

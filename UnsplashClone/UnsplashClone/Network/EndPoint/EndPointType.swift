@@ -7,10 +7,8 @@
 
 import Foundation
 
-typealias HTTPHeaders = [String: String]
-
-protocol EndPoint {
+protocol EndPointType {
     var url: URL? { get }
     var headers: HTTPHeaders? { get }
+    var method: HTTPMethod { get }
 }
-

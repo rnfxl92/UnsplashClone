@@ -14,7 +14,8 @@ enum UnsplashEndPoint {
     case searchPhotos(page: Int, perPage: Int, query: String)
 }
 
-extension UnsplashEndPoint: EndPoint {
+extension UnsplashEndPoint: EndPointType {
+    
     var url: URL? {
         switch self {
         case .photos(let page, let perPage):
@@ -29,7 +30,12 @@ extension UnsplashEndPoint: EndPoint {
     }
     
     var headers: HTTPHeaders? {
-        ["Authorization": "Client-ID \(UnsplashApiKey.accessKey)"]
+        ["Authorization": "Client-ID \(UnsplashApiKey.accessKey)"
+        , "Content-Type": "application/json"]
+    }
+    
+    var method: HTTPMethod {
+        return .GET
     }
     
 }
