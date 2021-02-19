@@ -11,7 +11,6 @@ protocol ImageServicing {
     
     func imageURL(endPoint: EndPointType, completion: @escaping (Result<UIImage?, NetworkError>) -> Void)
     
-    func imageURLFromServer(endPoint: EndPointType, completion: @escaping(Result<UIImage?,  NetworkError>) -> Void)
+    func imageURLFromServer(endPoint: EndPointType, completion: @escaping(Result<UIImage?, NetworkError>) -> Void)
     
 }
-

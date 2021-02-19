@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		341C775925DFA1A300BD7728 /* StretchyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341C775825DFA1A300BD7728 /* StretchyTableViewCell.swift */; };
 		34AE5D1825DAD24A001E0F71 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AE5D1725DAD24A001E0F71 /* HTTPMethod.swift */; };
 		34AE5D2725DAD50E001E0F71 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AE5D2625DAD50E001E0F71 /* HTTPHeaders.swift */; };
 		34AE5D2C25DAD538001E0F71 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AE5D2B25DAD538001E0F71 /* PhotoService.swift */; };
@@ -14,7 +15,7 @@
 		34BB729925DC145D00399F53 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BB729825DC145D00399F53 /* ImageService.swift */; };
 		34C5051C25D6753A0014EEE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5051B25D6753A0014EEE4 /* AppDelegate.swift */; };
 		34C5051E25D6753A0014EEE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5051D25D6753A0014EEE4 /* SceneDelegate.swift */; };
-		34C5052025D6753A0014EEE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5051F25D6753A0014EEE4 /* ViewController.swift */; };
+		34C5052025D6753A0014EEE4 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5051F25D6753A0014EEE4 /* PhotoViewController.swift */; };
 		34C5052325D6753A0014EEE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C5052125D6753A0014EEE4 /* Main.storyboard */; };
 		34C5052525D6753C0014EEE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C5052425D6753C0014EEE4 /* Assets.xcassets */; };
 		34C5052825D6753C0014EEE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C5052625D6753C0014EEE4 /* LaunchScreen.storyboard */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		2B1A3AB2882198D37EA0DE1A /* Pods_UnsplashClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnsplashClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		341C775825DFA1A300BD7728 /* StretchyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyTableViewCell.swift; sourceTree = "<group>"; };
 		34AE5D1725DAD24A001E0F71 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		34AE5D2625DAD50E001E0F71 /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
 		34AE5D2B25DAD538001E0F71 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
@@ -44,7 +46,7 @@
 		34C5051825D6753A0014EEE4 /* UnsplashClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C5051B25D6753A0014EEE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34C5051D25D6753A0014EEE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		34C5051F25D6753A0014EEE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		34C5051F25D6753A0014EEE4 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		34C5052225D6753A0014EEE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		34C5052425D6753C0014EEE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34C5052725D6753C0014EEE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		341C775725DFA13F00BD7728 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				341C775825DFA1A300BD7728 /* StretchyTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		34AE5D1B25DAD272001E0F71 /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +147,8 @@
 		34C5054225D67BAF0014EEE4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				34C5051F25D6753A0014EEE4 /* ViewController.swift */,
+				341C775725DFA13F00BD7728 /* Cell */,
+				34C5051F25D6753A0014EEE4 /* PhotoViewController.swift */,
 				34C5052125D6753A0014EEE4 /* Main.storyboard */,
 			);
 			path = ViewController;
@@ -340,7 +351,7 @@
 				34AE5D2C25DAD538001E0F71 /* PhotoService.swift in Sources */,
 				34C5054C25D6808E0014EEE4 /* SceneCoordinator.swift in Sources */,
 				34C5055B25D6A0A50014EEE4 /* EndPointType.swift in Sources */,
-				34C5052025D6753A0014EEE4 /* ViewController.swift in Sources */,
+				34C5052025D6753A0014EEE4 /* PhotoViewController.swift in Sources */,
 				34C5055225D681750014EEE4 /* TransitionModel.swift in Sources */,
 				34C5057925D817990014EEE4 /* PhotoServicing.swift in Sources */,
 				34C5056725D7EDED0014EEE4 /* PhotoURLs.swift in Sources */,
@@ -350,6 +361,7 @@
 				34C5056125D7EA250014EEE4 /* Photo.swift in Sources */,
 				34BB729925DC145D00399F53 /* ImageService.swift in Sources */,
 				34C5056425D7ED4E0014EEE4 /* User.swift in Sources */,
+				341C775925DFA1A300BD7728 /* StretchyTableViewCell.swift in Sources */,
 				34AE5D1825DAD24A001E0F71 /* HTTPMethod.swift in Sources */,
 				34C5051E25D6753A0014EEE4 /* SceneDelegate.swift in Sources */,
 				34BB729625DC0AA000399F53 /* ImageServicing.swift in Sources */,
