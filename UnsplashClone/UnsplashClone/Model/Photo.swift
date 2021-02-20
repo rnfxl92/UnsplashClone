@@ -13,7 +13,7 @@ class Photo: Codable {
     let username: String
     let width: Int
     let height: Int
-    let sponsered: Bool
+    let sponsored: Bool
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -22,18 +22,27 @@ class Photo: Codable {
         username = try container.decode(User.self, forKey: .username).name
         width = try container.decode(Int.self, forKey: .width)
         height = try container.decode(Int.self, forKey: .height)
-        sponsered = try !container.decodeNil(forKey: .sponsered)
-        
+        sponsored = try !container.decodeNil(forKey: .sponsored)
+    }
+}
+
+extension Photo: Hashable {
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 
 private extension Photo {
-    enum Codingkeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case photoURLs = "urls"
-        case username = "name"
+        case username = "user"
         case width
         case height
-        case sponsered = "sponsership"
+        case sponsored = "sponsorship"
     }
 }
