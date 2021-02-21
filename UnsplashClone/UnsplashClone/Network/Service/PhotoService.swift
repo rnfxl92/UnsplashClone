@@ -9,10 +9,6 @@ import Foundation
 
 final class PhotoService: PhotoServicing {
     
-    static let shared = PhotoService()
-    
-    private init() { }
-    
     func fetchPhoto(id: String, completion: @escaping (Result<Photo, NetworkError>) -> Void) {
         request(dataType: Photo.self, endPoint: UnsplashEndPoint.photo(id: id)) { result in
             completion(result)

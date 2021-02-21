@@ -11,7 +11,7 @@
         <!--Search-->
         <scene sceneID="G2u-Ng-YCH">
             <objects>
-                <viewController id="E20-N2-Miz" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchVC" id="E20-N2-Miz" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7NQ-uK-NiC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
         <!--Photo-->
         <scene sceneID="B2W-7W-rba">
             <objects>
-                <viewController id="pds-xv-6DK" customClass="PhotoViewController" customModule="UnsplashClone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoVC" id="pds-xv-6DK" customClass="PhotoViewController" customModule="UnsplashClone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h3x-4w-gdi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,7 +104,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="8oi-cv-atN">
             <objects>
-                <tabBarController id="p0l-sx-Q1X" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainVC" id="p0l-sx-Q1X" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WZY-5X-gok">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -7,13 +7,19 @@
 
 import UIKit
 
-class PhotoViewController: UIViewController {
+class PhotoViewController: UIViewController, ViewModelBindableType {
     
     typealias PhotoDataSource = UITableViewDiffableDataSource<Section, Photo>
     
     private lazy var dataSource = createDataSource()
     private var photos = [Photo]()
-    private let viewModel = PhotoViewModel( photoService: PhotoService.shared, imageService: ImageService.shared)
+    var viewModel: PhotoViewModel!
+    
+    func bindViewModel() {
+        viewModel.photoData.bind { [weak self] photos in
+            self?.photos.append(contentsOf: photos)
+        }
+    }
     
     var kTableHeaderHeight: CGFloat = 300.0
     var headerView: UIView!
@@ -23,14 +29,12 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        viewModel.photoData.bind { [weak self] photos in
-            self?.photos.append(contentsOf: photos)
-        }
-        viewModel.fetchPhotoData(page: 1, perPage: 10)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        viewModel.fetchPhotoData(page: 1, perPage: 10)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             print(self.photos)
             self.reloadPhotos()

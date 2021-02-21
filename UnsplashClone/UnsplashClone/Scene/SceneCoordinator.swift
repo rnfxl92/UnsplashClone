@@ -22,7 +22,6 @@ class SceneCoordinator: SceneCoordinatorType {
         currentVC = window.rootViewController!
     }
     
-  
     func transition(to scene: Scene, using style: TranstionStyle, animated: Bool) {
         let target = scene.instantiate()
         switch style {
@@ -38,7 +37,7 @@ class SceneCoordinator: SceneCoordinatorType {
            nav.pushViewController(target, animated: animated)
            currentVC = target.sceneViewController
         case .modal:
-           currentVC.present(target, animated: animated) 
+           currentVC.present(target, animated: animated)
            currentVC = target.sceneViewController
         }
         

@@ -9,13 +9,13 @@ import UIKit
 
 class PhotoViewModel {
     
-    //let sceneCoordinator: SceneCoordinatorType
+    let sceneCoordinator: SceneCoordinatorType
     let photoService: PhotoServicing
     let imageService: ImageServicing
     let photoData: Box<[Photo]> = Box([])
     
-    init(photoService: PhotoServicing, imageService: ImageServicing) {
-        //self.sceneCoordinator = sceneCoordinator
+    init(sceneCoordinator: SceneCoordinator,  photoService: PhotoServicing, imageService: ImageServicing) {
+        self.sceneCoordinator = sceneCoordinator
         self.photoService = photoService
         self.imageService = imageService
     }

@@ -9,10 +9,7 @@ import UIKit
 
 final class ImageService: ImageServicing {
     
-    static let shared = ImageService()
     private let imageCache = NSCache<NSString, UIImage>()
-    
-    private init() { }
     
     func imageURL(endPoint: EndPointType, completion: @escaping (Result<UIImage?, NetworkError>) -> Void) {
         guard let url = endPoint.url  else {
