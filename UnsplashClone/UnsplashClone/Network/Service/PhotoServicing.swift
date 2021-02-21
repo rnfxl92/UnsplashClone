@@ -10,6 +10,11 @@ import Foundation
 protocol PhotoServicing {
     func request<T: Codable>(dataType: T.Type, endPoint: EndPointType, completion: @escaping ((Result<T, NetworkError>) -> Void))
     
+    func fetchPhoto(id: String, completion: @escaping (Result<Photo, NetworkError>) -> Void)
+    
+    func fetchPhotos(page: Int, perPage: Int, completion: @escaping (Result<[Photo], NetworkError>) -> Void)
+    
+    func fetchSearchedPhotos(page: Int, perPage: Int, query: String, completion: @escaping (Result<[Photo], NetworkError>) -> Void)
 }
 
 extension PhotoServicing {
@@ -23,7 +28,7 @@ extension PhotoServicing {
         request.httpMethod = endPoint.method.rawValue
         request.allHTTPHeaderFields = endPoint.headers
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completion(.failure(.networkError(error: error.localizedDescription)))
                 return

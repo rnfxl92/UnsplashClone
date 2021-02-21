@@ -19,7 +19,7 @@ extension UnsplashEndPoint: EndPointType {
     var url: URL? {
         switch self {
         case .photos(let page, let perPage):
-            return URL(string: "\(UnsplashEndPoint.baseURL)/photos?page =\(page)&per_page=\(perPage)")
+            return URL(string: "\(UnsplashEndPoint.baseURL)/photos?page=\(page)&per_page=\(perPage)")
         case .photo(let id):
             return URL(string: "\(UnsplashEndPoint.baseURL)/photos/\(id)")
         case .photoURL(let url, let width):
@@ -30,10 +30,10 @@ extension UnsplashEndPoint: EndPointType {
     }
     
     var headers: HTTPHeaders? {
-        ["Authorization": "Client-ID \(UnsplashApiKey.accessKey)"
-        , "Content-Type": "application/json"]
+        ["Authorization": "Client-ID \(UnsplashApiKey.accessKey.rawValue)",
+         "Content-Type": "application/json"]
     }
-    
+
     var method: HTTPMethod {
         return .GET
     }

@@ -32,28 +32,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iwZ-tR-had">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iwZ-tR-had">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="k4Y-Fa-GI4">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="129"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="k4Y-Fa-GI4" customClass="PhotoTableViewHeaderView" customModule="UnsplashClone" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="278"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="DS5-ej-6WW">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="129"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="278"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos for Everyone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j12-6m-w82">
+                                            <rect key="frame" x="71.5" y="121.5" width="271" height="35"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo of the Day by ???" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qu6-p9-p6l">
+                                            <rect key="frame" x="117" y="237" width="180" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="DS5-ej-6WW" firstAttribute="top" secondItem="k4Y-Fa-GI4" secondAttribute="top" id="8h6-2Q-Pht"/>
+                                        <constraint firstItem="j12-6m-w82" firstAttribute="centerX" secondItem="k4Y-Fa-GI4" secondAttribute="centerX" id="MBF-NS-bMq"/>
                                         <constraint firstItem="DS5-ej-6WW" firstAttribute="leading" secondItem="k4Y-Fa-GI4" secondAttribute="leading" id="Q8r-0T-pQB"/>
+                                        <constraint firstItem="j12-6m-w82" firstAttribute="centerY" secondItem="k4Y-Fa-GI4" secondAttribute="centerY" id="QGW-9k-fHm"/>
                                         <constraint firstAttribute="trailing" secondItem="DS5-ej-6WW" secondAttribute="trailing" id="bxU-sG-5b5"/>
+                                        <constraint firstAttribute="bottom" secondItem="qu6-p9-p6l" secondAttribute="bottom" constant="20" id="jUy-kV-egW"/>
+                                        <constraint firstItem="qu6-p9-p6l" firstAttribute="centerX" secondItem="k4Y-Fa-GI4" secondAttribute="centerX" id="v8H-Wd-EKd"/>
                                         <constraint firstAttribute="bottom" secondItem="DS5-ej-6WW" secondAttribute="bottom" id="vql-Xn-WqE"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="headerImageView" destination="DS5-ej-6WW" id="RMu-pj-WQ5"/>
+                                        <outlet property="userLabel" destination="qu6-p9-p6l" id="RVA-dp-hPe"/>
+                                    </connections>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StretchyTableViewCell" id="KvE-IF-Vbl" customClass="StretchyTableViewCell" customModule="UnsplashClone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="157" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="306" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KvE-IF-Vbl" id="8II-n7-4kZ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -61,10 +81,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="pds-xv-6DK" id="xit-RU-jCK"/>
-                                    <outlet property="delegate" destination="pds-xv-6DK" id="IgM-3L-tSZ"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YzT-tD-Syf"/>

@@ -7,7 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		341C775925DFA1A300BD7728 /* StretchyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341C775825DFA1A300BD7728 /* StretchyTableViewCell.swift */; };
+		341C776725DFF9FE00BD7728 /* PhotoTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341C776625DFF9FE00BD7728 /* PhotoTableViewHeaderView.swift */; };
+		341C776B25DFFE2200BD7728 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341C776925DFFE2200BD7728 /* PhotoTableViewCell.swift */; };
+		341C776C25DFFE2200BD7728 /* PhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341C776A25DFFE2200BD7728 /* PhotoTableViewCell.xib */; };
+		341C777025E009F600BD7728 /* UIImageView+CAGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341C776F25E009F600BD7728 /* UIImageView+CAGradientLayer.swift */; };
+		3497B1CC25E20FFA0017CEE5 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497B1CB25E20FFA0017CEE5 /* UIView+Nib.swift */; };
+		34A2720225E17C2D002DB182 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2720125E17C2D002DB182 /* Box.swift */; };
+		34A2720625E17C6C002DB182 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2720525E17C6C002DB182 /* ViewModelBindableType.swift */; };
+		34A2720925E17ECD002DB182 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2720825E17ECD002DB182 /* PhotoViewModel.swift */; };
+		34A2720C25E184C6002DB182 /* UIView+Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2720B25E184C6002DB182 /* UIView+Attribute.swift */; };
+		34A2721125E1B0C9002DB182 /* UIView+ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2721025E1B0C9002DB182 /* UIView+ReuseIdentifier.swift */; };
 		34AE5D1825DAD24A001E0F71 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AE5D1725DAD24A001E0F71 /* HTTPMethod.swift */; };
 		34AE5D2725DAD50E001E0F71 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AE5D2625DAD50E001E0F71 /* HTTPHeaders.swift */; };
 		34AE5D2C25DAD538001E0F71 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AE5D2B25DAD538001E0F71 /* PhotoService.swift */; };
@@ -37,7 +46,16 @@
 
 /* Begin PBXFileReference section */
 		2B1A3AB2882198D37EA0DE1A /* Pods_UnsplashClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnsplashClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		341C775825DFA1A300BD7728 /* StretchyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyTableViewCell.swift; sourceTree = "<group>"; };
+		341C776625DFF9FE00BD7728 /* PhotoTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewHeaderView.swift; sourceTree = "<group>"; };
+		341C776925DFFE2200BD7728 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		341C776A25DFFE2200BD7728 /* PhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoTableViewCell.xib; sourceTree = "<group>"; };
+		341C776F25E009F600BD7728 /* UIImageView+CAGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+CAGradientLayer.swift"; sourceTree = "<group>"; };
+		3497B1CB25E20FFA0017CEE5 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		34A2720125E17C2D002DB182 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		34A2720525E17C6C002DB182 /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
+		34A2720825E17ECD002DB182 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		34A2720B25E184C6002DB182 /* UIView+Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Attribute.swift"; sourceTree = "<group>"; };
+		34A2721025E1B0C9002DB182 /* UIView+ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ReuseIdentifier.swift"; sourceTree = "<group>"; };
 		34AE5D1725DAD24A001E0F71 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		34AE5D2625DAD50E001E0F71 /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
 		34AE5D2B25DAD538001E0F71 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
@@ -83,9 +101,30 @@
 		341C775725DFA13F00BD7728 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				341C775825DFA1A300BD7728 /* StretchyTableViewCell.swift */,
+				341C776625DFF9FE00BD7728 /* PhotoTableViewHeaderView.swift */,
+				341C776925DFFE2200BD7728 /* PhotoTableViewCell.swift */,
+				341C776A25DFFE2200BD7728 /* PhotoTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		341C776E25E0099800BD7728 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				341C776F25E009F600BD7728 /* UIImageView+CAGradientLayer.swift */,
+				34A2720B25E184C6002DB182 /* UIView+Attribute.swift */,
+				34A2721025E1B0C9002DB182 /* UIView+ReuseIdentifier.swift */,
+				3497B1CB25E20FFA0017CEE5 /* UIView+Nib.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		34A2720025E17C21002DB182 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				34A2720125E17C2D002DB182 /* Box.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		34AE5D1B25DAD272001E0F71 /* EndPoint */ = {
@@ -130,6 +169,8 @@
 		34C5051A25D6753A0014EEE4 /* UnsplashClone */ = {
 			isa = PBXGroup;
 			children = (
+				34A2720025E17C21002DB182 /* Common */,
+				341C776E25E0099800BD7728 /* Extension */,
 				34C5054225D67BAF0014EEE4 /* ViewController */,
 				34C5054425D67E010014EEE4 /* ViewModel */,
 				34C5054525D67E130014EEE4 /* Model */,
@@ -150,6 +191,7 @@
 				341C775725DFA13F00BD7728 /* Cell */,
 				34C5051F25D6753A0014EEE4 /* PhotoViewController.swift */,
 				34C5052125D6753A0014EEE4 /* Main.storyboard */,
+				34A2720525E17C6C002DB182 /* ViewModelBindableType.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -168,6 +210,7 @@
 		34C5054425D67E010014EEE4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				34A2720825E17ECD002DB182 /* PhotoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -274,6 +317,7 @@
 			files = (
 				34C5053B25D677660014EEE4 /* .swiftlint.yml in Resources */,
 				34C5052825D6753C0014EEE4 /* LaunchScreen.storyboard in Resources */,
+				341C776C25DFFE2200BD7728 /* PhotoTableViewCell.xib in Resources */,
 				34C5052525D6753C0014EEE4 /* Assets.xcassets in Resources */,
 				34C5052325D6753A0014EEE4 /* Main.storyboard in Resources */,
 			);
@@ -348,22 +392,30 @@
 			files = (
 				34C5055825D69E430014EEE4 /* UnsplashApiKey.swift in Sources */,
 				34C5054825D67F6C0014EEE4 /* Scene.swift in Sources */,
+				341C776B25DFFE2200BD7728 /* PhotoTableViewCell.swift in Sources */,
+				34A2720625E17C6C002DB182 /* ViewModelBindableType.swift in Sources */,
 				34AE5D2C25DAD538001E0F71 /* PhotoService.swift in Sources */,
 				34C5054C25D6808E0014EEE4 /* SceneCoordinator.swift in Sources */,
 				34C5055B25D6A0A50014EEE4 /* EndPointType.swift in Sources */,
+				341C777025E009F600BD7728 /* UIImageView+CAGradientLayer.swift in Sources */,
+				3497B1CC25E20FFA0017CEE5 /* UIView+Nib.swift in Sources */,
 				34C5052025D6753A0014EEE4 /* PhotoViewController.swift in Sources */,
 				34C5055225D681750014EEE4 /* TransitionModel.swift in Sources */,
 				34C5057925D817990014EEE4 /* PhotoServicing.swift in Sources */,
 				34C5056725D7EDED0014EEE4 /* PhotoURLs.swift in Sources */,
 				34AE5D2725DAD50E001E0F71 /* HTTPHeaders.swift in Sources */,
+				34A2720C25E184C6002DB182 /* UIView+Attribute.swift in Sources */,
+				34A2720925E17ECD002DB182 /* PhotoViewModel.swift in Sources */,
 				34C5051C25D6753A0014EEE4 /* AppDelegate.swift in Sources */,
 				34C5057625D814CA0014EEE4 /* NetworkError.swift in Sources */,
+				34A2720225E17C2D002DB182 /* Box.swift in Sources */,
 				34C5056125D7EA250014EEE4 /* Photo.swift in Sources */,
 				34BB729925DC145D00399F53 /* ImageService.swift in Sources */,
 				34C5056425D7ED4E0014EEE4 /* User.swift in Sources */,
-				341C775925DFA1A300BD7728 /* StretchyTableViewCell.swift in Sources */,
 				34AE5D1825DAD24A001E0F71 /* HTTPMethod.swift in Sources */,
 				34C5051E25D6753A0014EEE4 /* SceneDelegate.swift in Sources */,
+				341C776725DFF9FE00BD7728 /* PhotoTableViewHeaderView.swift in Sources */,
+				34A2721125E1B0C9002DB182 /* UIView+ReuseIdentifier.swift in Sources */,
 				34BB729625DC0AA000399F53 /* ImageServicing.swift in Sources */,
 				34C5055E25D6A49D0014EEE4 /* UnsplashEndPoint.swift in Sources */,
 				34C5054F25D680A00014EEE4 /* SceneCoordinatorType.swift in Sources */,

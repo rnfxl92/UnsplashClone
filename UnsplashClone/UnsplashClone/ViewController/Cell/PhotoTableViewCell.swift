@@ -9,15 +9,47 @@ import UIKit
 
 class PhotoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var sponsoredLabel: UILabel!
+    private var gradientLayer: CAGradientLayer?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        gradientLayer = photoImageView.makeGradientLayer()
     }
     
+    func configureCell(username: String, sponsored: Bool, imageSize: CGSize) {
+        usernameLabel.text = username
+        sponsoredLabel.isHidden = !sponsored
+        gradientLayer?.frame.size = imageSize
+    }
+    
+    func configureCell(image: UIImage?) {
+        photoImageView.image = image
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImageView.image = nil
+    }
+    
+}
+
+extension PhotoTableViewCell {
+    static func registerNib(tableView: UITableView) {
+        let nib = UINib(nibName: PhotoTableViewCell.Name.typeName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: Identifier.reusableCell)
+    }
+}
+
+extension PhotoTableViewCell {
+    
+    enum Identifier {
+        static let reusableCell: String = "PhotoCell"
+    }
+    
+    enum Name {
+        static let typeName: String = "PhotoTableViewCell"
+    }
 }
