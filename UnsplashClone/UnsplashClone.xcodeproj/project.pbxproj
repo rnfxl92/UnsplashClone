@@ -16,7 +16,6 @@
 		34A2720625E17C6C002DB182 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2720525E17C6C002DB182 /* ViewModelBindableType.swift */; };
 		34A2720925E17ECD002DB182 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2720825E17ECD002DB182 /* PhotoViewModel.swift */; };
 		34A2720C25E184C6002DB182 /* UIView+Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2720B25E184C6002DB182 /* UIView+Attribute.swift */; };
-		34A2721125E1B0C9002DB182 /* UIView+ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2721025E1B0C9002DB182 /* UIView+ReuseIdentifier.swift */; };
 		34AE5D1825DAD24A001E0F71 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AE5D1725DAD24A001E0F71 /* HTTPMethod.swift */; };
 		34AE5D2725DAD50E001E0F71 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AE5D2625DAD50E001E0F71 /* HTTPHeaders.swift */; };
 		34AE5D2C25DAD538001E0F71 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AE5D2B25DAD538001E0F71 /* PhotoService.swift */; };
@@ -55,7 +54,6 @@
 		34A2720525E17C6C002DB182 /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		34A2720825E17ECD002DB182 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		34A2720B25E184C6002DB182 /* UIView+Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Attribute.swift"; sourceTree = "<group>"; };
-		34A2721025E1B0C9002DB182 /* UIView+ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ReuseIdentifier.swift"; sourceTree = "<group>"; };
 		34AE5D1725DAD24A001E0F71 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		34AE5D2625DAD50E001E0F71 /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
 		34AE5D2B25DAD538001E0F71 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 			children = (
 				341C776F25E009F600BD7728 /* UIImageView+CAGradientLayer.swift */,
 				34A2720B25E184C6002DB182 /* UIView+Attribute.swift */,
-				34A2721025E1B0C9002DB182 /* UIView+ReuseIdentifier.swift */,
 				3497B1CB25E20FFA0017CEE5 /* UIView+Nib.swift */,
 			);
 			path = Extension;
@@ -415,7 +412,6 @@
 				34AE5D1825DAD24A001E0F71 /* HTTPMethod.swift in Sources */,
 				34C5051E25D6753A0014EEE4 /* SceneDelegate.swift in Sources */,
 				341C776725DFF9FE00BD7728 /* PhotoTableViewHeaderView.swift in Sources */,
-				34A2721125E1B0C9002DB182 /* UIView+ReuseIdentifier.swift in Sources */,
 				34BB729625DC0AA000399F53 /* ImageServicing.swift in Sources */,
 				34C5055E25D6A49D0014EEE4 /* UnsplashEndPoint.swift in Sources */,
 				34C5054F25D680A00014EEE4 /* SceneCoordinatorType.swift in Sources */,

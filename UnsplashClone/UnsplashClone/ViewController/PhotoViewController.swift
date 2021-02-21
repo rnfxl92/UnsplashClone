@@ -67,7 +67,18 @@ class PhotoViewController: UIViewController {
 }
 
 extension PhotoViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        guard let photo = dataSource.itemIdentifier(for: indexPath) else {
+            return .zero
+        }
+        
+        let width = tableView.frame.width
+        let ratio = CGFloat(photo.height) / CGFloat(photo.width)
+        let height = width * ratio
+        
+        return height
+    }
 }
 
 extension PhotoViewController {
@@ -105,3 +116,5 @@ extension PhotoViewController {
         return dataSource
     }
 }
+
+
