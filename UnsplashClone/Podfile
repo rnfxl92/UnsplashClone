@@ -7,9 +7,5 @@ target 'UnsplashClone' do
 
   # Pods for UnsplashClone
   pod 'SwiftLint'
-  pod 'RxSwift'
-  pod 'RxCocoa'  
-  pod 'NSObject+Rx'
-  pod 'RxDataSources'
-
+  
 end
