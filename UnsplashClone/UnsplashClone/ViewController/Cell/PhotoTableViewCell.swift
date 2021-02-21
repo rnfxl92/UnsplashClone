@@ -20,13 +20,17 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     func configureCell(username: String, sponsored: Bool, imageSize: CGSize) {
-        usernameLabel.text = username
-        sponsoredLabel.isHidden = !sponsored
-        gradientLayer?.frame.size = imageSize
+        DispatchQueue.main.async { [unowned self] in
+            self.usernameLabel.text = username
+            self.sponsoredLabel.isHidden = !sponsored
+            self.gradientLayer?.frame.size = imageSize
+        }
     }
     
     func configureCell(image: UIImage?) {
-        photoImageView.image = image
+        DispatchQueue.main.async { [unowned self] in
+            self.photoImageView.image = image
+        }
     }
     
     override func prepareForReuse() {

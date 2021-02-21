@@ -12,15 +12,16 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
     typealias PhotoDataSource = UITableViewDiffableDataSource<Section, Photo>
     
     private lazy var dataSource = createDataSource()
-    private var photos = [Photo]()
-    var viewModel: PhotoViewModel!
-    
-    func bindViewModel() {
-        viewModel.photoData.bind { [weak self] photos in
-            self?.photos.append(contentsOf: photos)
+    private var photos = [Photo]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.reloadPhotos()
+            }
         }
     }
-    
+    var viewModel: PhotoViewModel!
+    private let perPage: Int = 10
+
     var kTableHeaderHeight: CGFloat = 300.0
     var headerView: UIView!
     
@@ -33,11 +34,12 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.fetchPhotoData(page: 1, perPage: 10)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            print(self.photos)
-            self.reloadPhotos()
+        viewModel.fetchPhotoData(page: 1, perPage: perPage)
+    }
+    
+    func bindViewModel() {
+        viewModel.photoData.bind { [weak self] photos in
+            self?.photos.append(contentsOf: photos)
         }
     }
     
@@ -73,7 +75,8 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
 extension PhotoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        guard let photo = dataSource.itemIdentifier(for: indexPath) else {
+        guard let photo = dataSource.itemIdentifier(for: indexPath)
+        else {
             return .zero
         }
         
@@ -83,6 +86,29 @@ extension PhotoViewController: UITableViewDelegate {
         
         return height
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.item == photos.count - 1 {
+            let page = Int(ceil(Double(photos.count) / Double(perPage))) + 1
+            viewModel.fetchPhotoData(page: page, perPage: perPage)
+        }
+        
+        guard let photoCell = cell as? PhotoTableViewCell,
+              let photo = dataSource.itemIdentifier(for: indexPath)
+        else {
+            return
+        }
+        let width = Int(view.frame.width * UIScreen.main.scale)
+        viewModel.fetchImage(url: photo.photoURLs.regular, width: width) { result in
+            switch result {
+            case .success(let image):
+                photoCell.configureCell(image: image)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
 }
 
 extension PhotoViewController {
@@ -120,5 +146,3 @@ extension PhotoViewController {
         return dataSource
     }
 }
-
-

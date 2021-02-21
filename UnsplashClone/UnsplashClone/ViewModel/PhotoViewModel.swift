@@ -14,7 +14,7 @@ class PhotoViewModel {
     let imageService: ImageServicing
     let photoData: Box<[Photo]> = Box([])
     
-    init(sceneCoordinator: SceneCoordinator,  photoService: PhotoServicing, imageService: ImageServicing) {
+    init(sceneCoordinator: SceneCoordinator, photoService: PhotoServicing, imageService: ImageServicing) {
         self.sceneCoordinator = sceneCoordinator
         self.photoService = photoService
         self.imageService = imageService
@@ -30,6 +30,11 @@ class PhotoViewModel {
                 return
             }
         }
+    }
+    
+    func fetchImage(url: String, width: Int, completion: @escaping (Result<UIImage?, NetworkError>) -> Void) {
+        let endPoint = UnsplashEndPoint.photoURL(url: url, width: width)
+        imageService.imageURL(endPoint: endPoint, completion: completion)
     }
     
 }
