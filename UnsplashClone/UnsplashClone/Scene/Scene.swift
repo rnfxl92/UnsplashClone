@@ -8,7 +8,8 @@
 import UIKit
 
 enum Scene {
-    case main(PhotoViewModel)
+    case photo(PhotoViewModel)
+    case search
 }
 
 extension Scene {
@@ -16,7 +17,7 @@ extension Scene {
       let storyboard = UIStoryboard(name: storyboard, bundle: nil)
       
       switch self {
-      case .main(let viewModel):
+      case .photo(let viewModel):
          guard var vc = storyboard.instantiateViewController(withIdentifier: "PhotoVC") as? PhotoViewController else {
             fatalError()
          }
@@ -24,8 +25,12 @@ extension Scene {
         DispatchQueue.main.async {
             vc.bind(viewModel: viewModel)
         }
-        
-         return vc
+        return vc
+      case .search:
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "SearchVC") as? UITabBarController else {
+           fatalError()
+        }
+        return vc
       }
    }
 }
