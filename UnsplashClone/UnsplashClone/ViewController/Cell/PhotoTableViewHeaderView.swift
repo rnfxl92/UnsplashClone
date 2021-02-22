@@ -11,5 +11,10 @@ class PhotoTableViewHeaderView: UIView {
 
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var userLabel: UILabel!
-
+    
+    func configureHeaderImage(image: UIImage?) {
+        DispatchQueue.main.async { [unowned self] in
+            self.headerImageView.image = image
+        }
+    }
 }

@@ -12,6 +12,7 @@ enum UnsplashEndPoint {
     case photo(id: String)
     case photoURL(url: String, width: Int)
     case searchPhotos(page: Int, perPage: Int, query: String)
+    case randomPhoto
 }
 
 extension UnsplashEndPoint: EndPointType {
@@ -26,6 +27,8 @@ extension UnsplashEndPoint: EndPointType {
             return URL(string: "\(url)/&w=\(width)&fit=max")
         case .searchPhotos(let page, let perPage, let query):
             return URL(string: "\(UnsplashEndPoint.baseURL)/search/photos?page=\(page)&per_page=\(perPage)&query=\(query)")
+        case .randomPhoto:
+            return URL(string: "\(UnsplashEndPoint.baseURL)/photos/random")
         }
     }
     
@@ -39,7 +42,6 @@ extension UnsplashEndPoint: EndPointType {
     }
     
 }
-
 
 private extension UnsplashEndPoint {
     static let baseURL: String = "https://api.unsplash.com"

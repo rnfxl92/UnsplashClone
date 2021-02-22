@@ -19,9 +19,10 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
             }
         }
     }
+    
     var viewModel: PhotoViewModel!
     private let perPage: Int = 10
-
+    
     var kTableHeaderHeight: CGFloat = 300.0
     var headerView: UIView!
     
@@ -34,6 +35,17 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        guard let headerView = headerView as? PhotoTableViewHeaderView else {
+            return
+        }
+        viewModel.fetchHeaderPhoto(width: 100) { result in
+            switch result {
+            case .success(let image):
+                headerView.configureHeaderImage(image: image)
+            case .failure(let error):
+                print(error)
+            }
+        }
         viewModel.fetchPhotoData(page: 1, perPage: perPage)
     }
     
@@ -41,6 +53,7 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
         viewModel.photoData.bind { [weak self] photos in
             self?.photos.append(contentsOf: photos)
         }
+        
     }
     
     private func configureTableView() {

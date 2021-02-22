@@ -15,6 +15,8 @@ protocol PhotoServicing {
     func fetchPhotos(page: Int, perPage: Int, completion: @escaping (Result<[Photo], NetworkError>) -> Void)
     
     func fetchSearchedPhotos(page: Int, perPage: Int, query: String, completion: @escaping (Result<[Photo], NetworkError>) -> Void)
+    
+    func fetchRandomPhoto(completion: @escaping (Result<Photo, NetworkError>) -> Void)
 }
 
 extension PhotoServicing {

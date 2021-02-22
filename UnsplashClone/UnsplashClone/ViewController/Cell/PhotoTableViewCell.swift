@@ -8,7 +8,7 @@
 import UIKit
 
 class PhotoTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var sponsoredLabel: UILabel!
@@ -20,11 +20,9 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     func configureCell(username: String, sponsored: Bool, imageSize: CGSize) {
-        DispatchQueue.main.async { [unowned self] in
-            self.usernameLabel.text = username
-            self.sponsoredLabel.isHidden = !sponsored
-            self.gradientLayer?.frame.size = imageSize
-        }
+        usernameLabel.text = username
+        sponsoredLabel.isHidden = !sponsored
+        gradientLayer?.frame.size = imageSize
     }
     
     func configureCell(image: UIImage?) {

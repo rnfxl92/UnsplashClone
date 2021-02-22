@@ -26,5 +26,10 @@ final class PhotoService: PhotoServicing {
             completion(result)
         }
     }
-
+    
+    func fetchRandomPhoto(completion: @escaping (Result<Photo, NetworkError>) -> Void) {
+        request(dataType: Photo.self, endPoint: UnsplashEndPoint.randomPhoto) { result in
+            completion(result)
+        }
+    }
 }
