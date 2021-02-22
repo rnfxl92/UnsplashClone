@@ -13,6 +13,7 @@ class PhotoViewModel {
     let photoService: PhotoServicing
     let imageService: ImageServicing
     let photoData: Box<[Photo]> = Box([])
+    let headerPhoto: Box<Photo?> = Box(nil)
     
     init(sceneCoordinator: SceneCoordinator, photoService: PhotoServicing, imageService: ImageServicing) {
         self.sceneCoordinator = sceneCoordinator
@@ -27,7 +28,6 @@ class PhotoViewModel {
                 self?.photoData.value = photos
             case .failure(let error):
                 print(error)
-                return
             }
         }
     }
@@ -37,20 +37,13 @@ class PhotoViewModel {
         imageService.imageURL(endPoint: endPoint, completion: completion)
     }
     
-    func fetchHeaderPhoto(width: Int, completion: @escaping (Result<UIImage?, NetworkError>) -> Void) {
-        photoService.fetchRandomPhoto() { [weak self] result in
+    func fetchHeaderPhoto() {
+        photoService.fetchRandomPhoto { [weak self] result in
             switch result {
             case .success(let photo):
-                self?.fetchImage(url: photo.photoURLs.regular, width: width) { result in
-                    switch result {
-                    case .success(let image):
-                        completion(.success(image))
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
-                }
+                self?.headerPhoto.value = photo
             case .failure(let error):
-                completion(.failure(error))
+                print(error)
             }
         }
     }

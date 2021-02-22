@@ -26,9 +26,7 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     func configureCell(image: UIImage?) {
-        DispatchQueue.main.async { [unowned self] in
-            self.photoImageView.image = image
-        }
+          photoImageView.image = image
     }
     
     override func prepareForReuse() {

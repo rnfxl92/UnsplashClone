@@ -12,17 +12,8 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
     typealias PhotoDataSource = UITableViewDiffableDataSource<Section, Photo>
     
     private lazy var dataSource = createDataSource()
-    private var photos = [Photo]() {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.reloadPhotos()
-            }
-        }
-    }
-    
-    var viewModel: PhotoViewModel!
     private let perPage: Int = 10
-    
+    var viewModel: PhotoViewModel!
     var kTableHeaderHeight: CGFloat = 300.0
     var headerView: UIView!
     
@@ -35,23 +26,46 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let headerView = headerView as? PhotoTableViewHeaderView else {
-            return
-        }
-        viewModel.fetchHeaderPhoto(width: 100) { result in
-            switch result {
-            case .success(let image):
-                headerView.configureHeaderImage(image: image)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        
+        viewModel.fetchHeaderPhoto()
         viewModel.fetchPhotoData(page: 1, perPage: perPage)
     }
     
     func bindViewModel() {
         viewModel.photoData.bind { [weak self] photos in
-            self?.photos.append(contentsOf: photos)
+            guard let self = self else { return }
+            var snapshot = self.dataSource.snapshot()
+            snapshot.appendItems(photos, toSection: .main)
+            DispatchQueue.main.async {
+                self.dataSource.apply(snapshot)
+            }
+        }
+        
+        viewModel.headerPhoto.bind { [weak self] photo in
+            guard let self = self,
+                  let photo = photo,
+                  let headerView = self.headerView as? PhotoTableViewHeaderView
+            else {
+                return
+            }
+            DispatchQueue.main.async {
+                headerView.configureUserLabel(username: photo.username)
+                let width = Int(self.view.frame.width * UIScreen.main.scale)
+                
+                DispatchQueue.global().async {
+                    self.viewModel.fetchImage(url: photo.photoURLs.regular, width: width) { result in
+                        switch result {
+                        case .success(let image):
+                            DispatchQueue.main.async {
+                                headerView.configureHeaderImage(image: image)
+                            }
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                }
+                
+            }
         }
         
     }
@@ -70,14 +84,9 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
         PhotoTableViewCell.registerNib(tableView: photoTableView)
         
         updateHeaderView()
-        reloadPhotos()
-    }
-    
-    private func reloadPhotos() {
-        var snapshot  = NSDiffableDataSourceSnapshot<Section, Photo>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(photos)
-        self.dataSource.apply(snapshot)
+        dataSource.apply(snapshot)
     }
     
     enum Section: Hashable {
@@ -101,8 +110,9 @@ extension PhotoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.item == photos.count - 1 {
-            let page = Int(ceil(Double(photos.count) / Double(perPage))) + 1
+        
+        if indexPath.item == dataSource.tableView(tableView, numberOfRowsInSection: 0) - 1 {
+            let page = Int(ceil(Double(dataSource.tableView(tableView, numberOfRowsInSection: 0)) / Double(perPage))) + 1
             viewModel.fetchPhotoData(page: page, perPage: perPage)
         }
         
@@ -111,13 +121,18 @@ extension PhotoViewController: UITableViewDelegate {
         else {
             return
         }
+        
         let width = Int(view.frame.width * UIScreen.main.scale)
-        viewModel.fetchImage(url: photo.photoURLs.regular, width: width) { result in
-            switch result {
-            case .success(let image):
-                photoCell.configureCell(image: image)
-            case .failure(let error):
-                print(error)
+        DispatchQueue.global().async { [weak self] in
+            self?.viewModel.fetchImage(url: photo.photoURLs.regular, width: width) { result in
+                switch result {
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        photoCell.configureCell(image: image)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }
