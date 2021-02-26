@@ -9,8 +9,6 @@ import UIKit
 
 final class PhotoViewController: UIViewController, ViewModelBindableType {
     
-    typealias PhotoDataSource = UITableViewDiffableDataSource<Section, Photo>
-    
     private lazy var dataSource = createDataSource()
     private let perPage: Int = 10
     weak var coordinator: SceneCoordinatorType?
@@ -35,8 +33,9 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
     func bindViewModel() {
         viewModel.photoData.bind { [weak self] photos in
             guard let self = self else { return }
-            var snapshot = self.dataSource.snapshot()
-            snapshot.appendItems(photos, toSection: .main)
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(photos)
             DispatchQueue.main.async {
                 self.dataSource.apply(snapshot)
             }
@@ -89,9 +88,6 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
         dataSource.apply(snapshot)
     }
     
-    enum Section: Hashable {
-        case main
-    }
 }
 
 extension PhotoViewController: UITableViewDelegate {
@@ -138,11 +134,14 @@ extension PhotoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailScene = Scene.detail
+        let detailScene = Scene.detail(viewModel)
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
+        snapshot.appendSections([.main])
+        
+        
         coordinator?.transition(to: detailScene, using: .modal, animated: true)
         
     }
-    
     
 }
 
@@ -168,8 +167,8 @@ extension PhotoViewController {
 }
 
 extension PhotoViewController {
-    func createDataSource() -> PhotoDataSource {
-        let dataSource = PhotoDataSource(
+    func createDataSource() -> PhotoTableViewDataSource {
+        let dataSource = PhotoTableViewDataSource(
             tableView: photoTableView,
             cellProvider: { (tableView, indexPath, photo) -> UITableViewCell? in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.Identifier.reusableCell, for: indexPath) as? PhotoTableViewCell else { return UITableViewCell() }

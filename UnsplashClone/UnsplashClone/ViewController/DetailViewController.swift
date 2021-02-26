@@ -7,19 +7,33 @@
 
 import UIKit
 
-final class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController, ViewModelBindableType {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var navigationTitleItem: UINavigationItem!
     @IBOutlet weak var detailCollectionView: UICollectionView!
     
     weak var coordinator: SceneCoordinatorType?
+    var dataSource: PhotoCollectionViewDataSource?
+    var viewModel: PhotoViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         configureTransparentNavigationBar()
-        
+    }
+    
+    func bindViewModel() {
+        viewModel.photoData.bind { [weak self] photos in
+            guard let self = self else { return }
+            guard var snapshot = self.dataSource?.snapshot() else {
+                return
+            }
+            snapshot.appendItems(photos, toSection: .main)
+            DispatchQueue.main.async {
+                self.dataSource?.apply(snapshot)
+            }
+        }
     }
         
     private func configureCollectionView() {
@@ -61,6 +75,5 @@ extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
-    
     
 }
