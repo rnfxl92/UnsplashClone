@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SceneCoordinatorType {
+protocol SceneCoordinatorType: class {
 
     func transition(to scene: Scene, using style: TranstionStyle, animated: Bool)
     func close(animated: Bool)

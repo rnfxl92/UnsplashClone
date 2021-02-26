@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewModel = PhotoViewModel(sceneCoordinator: sceneCoordinator, photoService: photoService, imageService: imageService)
         
         let scene = Scene.photo(viewModel)
-        
+
         sceneCoordinator.transition(to: scene, using: .root, animated: false)
         
     }

@@ -23,7 +23,7 @@ class SceneCoordinator: SceneCoordinatorType {
     }
     
     func transition(to scene: Scene, using style: TranstionStyle, animated: Bool) {
-        let target = scene.instantiate()
+        let target = scene.instantiate(sceneCoordinator: self)
         switch style {
         case .root:
            currentVC = target.sceneViewController
@@ -44,7 +44,19 @@ class SceneCoordinator: SceneCoordinatorType {
     }
     
     func close(animated: Bool) {
-        
+        if let presentingVC = currentVC.presentingViewController {
+            currentVC.dismiss(animated: animated) { [unowned self] in
+                self.currentVC = presentingVC.sceneViewController
+            }
+        } else if let nav = currentVC.navigationController {
+            guard nav.popViewController(animated: animated) != nil else {
+                print(TransitionError.navigationControllerMissing)
+                return
+            }
+            currentVC = nav.viewControllers.last!
+        } else {
+            print("error")
+        }
     }
     
 }

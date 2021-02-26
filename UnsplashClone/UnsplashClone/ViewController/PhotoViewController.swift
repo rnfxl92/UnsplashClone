@@ -13,6 +13,7 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
     
     private lazy var dataSource = createDataSource()
     private let perPage: Int = 10
+    weak var coordinator: SceneCoordinatorType?
     var viewModel: PhotoViewModel!
     var kTableHeaderHeight: CGFloat = 300.0
     var headerView: UIView!
@@ -48,6 +49,7 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
             else {
                 return
             }
+            
             DispatchQueue.main.async {
                 headerView.configureUserLabel(username: photo.username)
                 let width = Int(self.view.frame.width * UIScreen.main.scale)
@@ -64,10 +66,8 @@ class PhotoViewController: UIViewController, ViewModelBindableType {
                         }
                     }
                 }
-                
             }
         }
-        
     }
     
     private func configureTableView() {
@@ -136,6 +136,13 @@ extension PhotoViewController: UITableViewDelegate {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailScene = Scene.detail
+        coordinator?.transition(to: detailScene, using: .modal, animated: true)
+        
+    }
+    
     
 }
 
