@@ -13,7 +13,7 @@ class DetailCollectionViewCell: UICollectionViewCell {
     
     private var imageHeight: CGFloat = .zero
     
-    func configureView(image: UIImage?) {
+    func configureImage(image: UIImage?) {
         photoImageView.image = image
         guard let image = image else { return }
         

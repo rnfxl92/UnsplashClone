@@ -135,9 +135,6 @@ extension PhotoViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailScene = Scene.detail(viewModel)
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
-        snapshot.appendSections([.main])
-        
         coordinator?.transition(to: detailScene, using: .modal, animated: true)
         
     }

@@ -19,7 +19,7 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureCollectionView()
         configureTransparentNavigationBar()
     }
     
@@ -37,7 +37,6 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
     
     private func configureCollectionView() {
         detailCollectionView.delegate = self
-        detailCollectionView.dataSource = self
     }
     
     private func configureTransparentNavigationBar() {
@@ -66,26 +65,28 @@ extension DetailViewController: UICollectionViewDelegate {
     
 }
 
-extension DetailViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
-    }
-    
-}
-
 extension DetailViewController {
     func createDataSource() -> PhotoCollectionViewDataSource {
         let dataSource = PhotoCollectionViewDataSource(
             collectionView: detailCollectionView,
-            cellProvider:{ (collectionView, indexPath, photo) in
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "aaa", for: indexPath)
+            cellProvider: { [unowned self] (collectionView, indexPath, photo) in
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.Identifier.reusableCell, for: indexPath)
                         as? DetailCollectionViewCell else { return UICollectionViewCell() }
                 
-                //cell.configureCell(username: photo.username, sponsored: photo.sponsored, imageSize: cell.frame.size)
+                let width = Int(self.view.frame.width * UIScreen.main.scale)
+                DispatchQueue.global().async {
+                    self.viewModel.fetchImage(url: photo.photoURLs.raw, width: width) { result in
+                        switch result {
+                        case .success(let image):
+                            DispatchQueue.main.async {
+                                cell.configureImage(image: image)
+                            }
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                }
+                
                 return cell
             })
         return dataSource
