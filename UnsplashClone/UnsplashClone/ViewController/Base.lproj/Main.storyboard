@@ -166,6 +166,10 @@
                                                 <constraint firstItem="SJy-8M-PtX" firstAttribute="centerY" secondItem="0UA-iX-zjC" secondAttribute="centerY" id="iWB-eQ-0ub"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="photoImageView" destination="SJy-8M-PtX" id="m3x-mb-jHm"/>
+                                            <outlet property="photoImageViewCenterYConstraint" destination="iWB-eQ-0ub" id="jjB-Yb-NbT"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>

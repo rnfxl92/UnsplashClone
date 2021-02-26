@@ -138,7 +138,6 @@ extension PhotoViewController: UITableViewDelegate {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
         snapshot.appendSections([.main])
         
-        
         coordinator?.transition(to: detailScene, using: .modal, animated: true)
         
     }

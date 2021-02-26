@@ -25,7 +25,6 @@ class PhotoViewModel {
         photoService.fetchPhotos(page: page, perPage: perPage) {[weak self] result in
             switch result {
             case .success(let photos):
-                //self?.photoData.value = photos
                 self?.photoData.appendValue(photos)
             case .failure(let error):
                 print(error)

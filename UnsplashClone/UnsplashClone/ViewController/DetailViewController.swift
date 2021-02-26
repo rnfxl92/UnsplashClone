@@ -8,34 +8,33 @@
 import UIKit
 
 final class DetailViewController: UIViewController, ViewModelBindableType {
-
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var navigationTitleItem: UINavigationItem!
     @IBOutlet weak var detailCollectionView: UICollectionView!
     
     weak var coordinator: SceneCoordinatorType?
-    var dataSource: PhotoCollectionViewDataSource?
+    lazy var dataSource = createDataSource()
     var viewModel: PhotoViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         configureTransparentNavigationBar()
     }
     
     func bindViewModel() {
         viewModel.photoData.bind { [weak self] photos in
             guard let self = self else { return }
-            guard var snapshot = self.dataSource?.snapshot() else {
-                return
-            }
-            snapshot.appendItems(photos, toSection: .main)
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(photos)
             DispatchQueue.main.async {
-                self.dataSource?.apply(snapshot)
+                self.dataSource.apply(snapshot)
             }
         }
     }
-        
+    
     private func configureCollectionView() {
         detailCollectionView.delegate = self
         detailCollectionView.dataSource = self
@@ -58,7 +57,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
 }
@@ -76,4 +75,19 @@ extension DetailViewController: UICollectionViewDataSource {
         return UICollectionViewCell()
     }
     
+}
+
+extension DetailViewController {
+    func createDataSource() -> PhotoCollectionViewDataSource {
+        let dataSource = PhotoCollectionViewDataSource(
+            collectionView: detailCollectionView,
+            cellProvider:{ (collectionView, indexPath, photo) in
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "aaa", for: indexPath)
+                        as? DetailCollectionViewCell else { return UICollectionViewCell() }
+                
+                //cell.configureCell(username: photo.username, sponsored: photo.sponsored, imageSize: cell.frame.size)
+                return cell
+            })
+        return dataSource
+    }
 }
