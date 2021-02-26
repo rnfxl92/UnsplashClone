@@ -169,7 +169,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bl-Qv-b1a">
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="3bl-Qv-b1a">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textAttributes key="titleTextAttributes">
@@ -179,6 +179,9 @@
                                     <navigationItem title="Title" id="I8z-yY-QmH">
                                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="k9W-8k-s1K">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="closeButtonDidTap:" destination="hB4-xC-h3U" id="Ly6-Rc-Nrg"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>

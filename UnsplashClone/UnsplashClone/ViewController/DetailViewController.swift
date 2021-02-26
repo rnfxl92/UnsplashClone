@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var navigationTitleItem: UINavigationItem!
@@ -17,13 +17,25 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureTransparentNavigationBar()
+        
     }
         
-    func configureCollectionView() {
+    private func configureCollectionView() {
         detailCollectionView.delegate = self
         detailCollectionView.dataSource = self
     }
-
+    
+    private func configureTransparentNavigationBar() {
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+    }
+    
+    @IBAction func closeButtonDidTap(_ sender: Any) {
+        coordinator?.close(animated: true)
+    }
+    
 }
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {

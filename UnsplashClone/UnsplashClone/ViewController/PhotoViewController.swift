@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoViewController: UIViewController, ViewModelBindableType {
+final class PhotoViewController: UIViewController, ViewModelBindableType {
     
     typealias PhotoDataSource = UITableViewDiffableDataSource<Section, Photo>
     
