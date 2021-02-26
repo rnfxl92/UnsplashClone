@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,8 @@
 		341C776B25DFFE2200BD7728 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341C776925DFFE2200BD7728 /* PhotoTableViewCell.swift */; };
 		341C776C25DFFE2200BD7728 /* PhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341C776A25DFFE2200BD7728 /* PhotoTableViewCell.xib */; };
 		341C777025E009F600BD7728 /* UIImageView+CAGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341C776F25E009F600BD7728 /* UIImageView+CAGradientLayer.swift */; };
+		345AD05E25E89BF00059F6FC /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345AD05D25E89BF00059F6FC /* DetailCollectionViewCell.swift */; };
+		345AD06525E8AB000059F6FC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345AD06425E8AB000059F6FC /* DetailViewController.swift */; };
 		3497B1CC25E20FFA0017CEE5 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497B1CB25E20FFA0017CEE5 /* UIView+Nib.swift */; };
 		34A2720225E17C2D002DB182 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2720125E17C2D002DB182 /* Box.swift */; };
 		34A2720625E17C6C002DB182 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2720525E17C6C002DB182 /* ViewModelBindableType.swift */; };
@@ -49,6 +51,8 @@
 		341C776925DFFE2200BD7728 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		341C776A25DFFE2200BD7728 /* PhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoTableViewCell.xib; sourceTree = "<group>"; };
 		341C776F25E009F600BD7728 /* UIImageView+CAGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+CAGradientLayer.swift"; sourceTree = "<group>"; };
+		345AD05D25E89BF00059F6FC /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		345AD06425E8AB000059F6FC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3497B1CB25E20FFA0017CEE5 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		34A2720125E17C2D002DB182 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		34A2720525E17C6C002DB182 /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 				341C776625DFF9FE00BD7728 /* PhotoTableViewHeaderView.swift */,
 				341C776925DFFE2200BD7728 /* PhotoTableViewCell.swift */,
 				341C776A25DFFE2200BD7728 /* PhotoTableViewCell.xib */,
+				345AD05D25E89BF00059F6FC /* DetailCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				34C5052125D6753A0014EEE4 /* Main.storyboard */,
 				34A2720525E17C6C002DB182 /* ViewModelBindableType.swift */,
 				34C5051F25D6753A0014EEE4 /* PhotoViewController.swift */,
+				345AD06425E8AB000059F6FC /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -371,6 +377,7 @@
 			files = (
 				34C5055825D69E430014EEE4 /* UnsplashApiKey.swift in Sources */,
 				34C5054825D67F6C0014EEE4 /* Scene.swift in Sources */,
+				345AD05E25E89BF00059F6FC /* DetailCollectionViewCell.swift in Sources */,
 				341C776B25DFFE2200BD7728 /* PhotoTableViewCell.swift in Sources */,
 				34A2720625E17C6C002DB182 /* ViewModelBindableType.swift in Sources */,
 				34AE5D2C25DAD538001E0F71 /* PhotoService.swift in Sources */,
@@ -395,6 +402,7 @@
 				34C5051E25D6753A0014EEE4 /* SceneDelegate.swift in Sources */,
 				341C776725DFF9FE00BD7728 /* PhotoTableViewHeaderView.swift in Sources */,
 				34BB729625DC0AA000399F53 /* ImageServicing.swift in Sources */,
+				345AD06525E8AB000059F6FC /* DetailViewController.swift in Sources */,
 				34C5055E25D6A49D0014EEE4 /* UnsplashEndPoint.swift in Sources */,
 				34C5054F25D680A00014EEE4 /* SceneCoordinatorType.swift in Sources */,
 			);
