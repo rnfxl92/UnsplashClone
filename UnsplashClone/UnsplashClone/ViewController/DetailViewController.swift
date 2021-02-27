@@ -32,6 +32,10 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     func bindViewModel() {
         viewModel.photoData.bind { [weak self] photos in
             guard let self = self else { return }
@@ -57,7 +61,6 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
     
     private func configureCollectionView() {
         detailCollectionView.delegate = self
-        
     }
     
     private func configureTransparentNavigationBar() {

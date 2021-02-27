@@ -9,7 +9,7 @@ import UIKit
 
 enum Scene {
     case photo(PhotoViewModel)
-    case detail(PhotoViewModel, IndexPath, CGFloat)
+    case detail(PhotoViewModel, IndexPath)
     case search
 }
 
@@ -29,7 +29,7 @@ extension Scene {
         }
         vc.coordinator = sceneCoordinator
         return vc
-      case .detail(let viewModel, let indexPath, let centerY):
+      case .detail(let viewModel, let indexPath):
         guard var vc = storyboard.instantiateViewController(withIdentifier: "DetailVC") as? DetailViewController
         else {
            fatalError()
@@ -39,6 +39,7 @@ extension Scene {
         }
         vc.coordinator = sceneCoordinator
         vc.defaultIndexPath = indexPath
+        
         return vc
       case .search:
         guard let vc = storyboard.instantiateViewController(withIdentifier: "SearchVC") as? UITabBarController
