@@ -16,11 +16,20 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
     weak var coordinator: SceneCoordinatorType?
     lazy var dataSource = createDataSource()
     var viewModel: PhotoViewModel!
+    var defaultIndexPath: IndexPath?
+    var firstCall = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         configureTransparentNavigationBar()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if firstCall {
+            scrollToDefaultPhoto()
+        }
     }
     
     func bindViewModel() {
@@ -35,8 +44,20 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
         }
     }
     
+    func scrollToDefaultPhoto() {
+        guard let defaultIndexPath = defaultIndexPath,
+              let photo = dataSource.itemIdentifier(for: defaultIndexPath) else {
+            return
+        }
+
+        detailCollectionView.scrollToItem(at: defaultIndexPath, at: .left, animated: false)
+        navigationTitleItem.title = photo.username
+        firstCall = false
+    }
+    
     private func configureCollectionView() {
         detailCollectionView.delegate = self
+        
     }
     
     private func configureTransparentNavigationBar() {
@@ -56,7 +77,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
 }
