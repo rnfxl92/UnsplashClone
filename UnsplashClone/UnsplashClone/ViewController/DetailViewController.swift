@@ -81,7 +81,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        return CGSize(width: view.frame.width, height: view.frame.height)
+        return CGSize(width: detailCollectionView.frame.width, height: detailCollectionView.frame.height)
     }
 }
 

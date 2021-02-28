@@ -9,22 +9,15 @@ import UIKit
 
 class DetailCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var photoImageViewCenterYConstraint: NSLayoutConstraint!
-    
-    private var imageHeight: CGFloat = .zero
-    
+ 
     func configureImage(image: UIImage?) {
         photoImageView.image = image
-        guard let image = image else { return }
-        
-        imageHeight = image.size.height
+
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         photoImageView.image = nil
-        imageHeight = .zero
-        photoImageViewCenterYConstraint.constant = .zero
     }
     
 }
