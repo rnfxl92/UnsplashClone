@@ -16,7 +16,7 @@ extension UIImageView {
         gradientLayer.colors = [
             UIColor.clear.cgColor,
             UIColor.clear.cgColor,
-            UIColor.black.cgColor,
+            UIColor.black.cgColor
         ]
         gradientLayer.opacity = 0.3
         layer.addSublayer(gradientLayer)

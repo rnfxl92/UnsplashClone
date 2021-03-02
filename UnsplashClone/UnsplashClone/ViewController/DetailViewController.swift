@@ -87,6 +87,44 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension DetailViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == dataSource.collectionView(collectionView, numberOfItemsInSection: 0) - 1 {
+            let page = Int(ceil(Double(dataSource.collectionView(collectionView, numberOfItemsInSection: 0)) / Double(CommonValues.perPage))) + 1
+            
+            viewModel.fetchPhotoData(page: page, perPage: CommonValues.perPage)
+        }
+        
+        guard let photoCell = cell as? DetailCollectionViewCell,
+              let photo = dataSource.itemIdentifier(for: indexPath)
+        else {
+            return
+        }
+        
+        let width = Int(collectionView.frame.width * UIScreen.main.scale)
+        DispatchQueue.global().async { [weak self] in
+            self?.viewModel.fetchImage(url: photo.photoURLs.raw, width: width) { result in
+                switch result {
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        photoCell.configureImage(image: image)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        
+        }
+    }
+}
+
+extension DetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let visibleIndexPath = detailCollectionView.visibleIndexPath else {
+            return
+        }
+        
+        navigationTitleItem.title = dataSource.itemIdentifier(for: visibleIndexPath)?.username ?? ""
+    }
 }
 
 extension DetailViewController {

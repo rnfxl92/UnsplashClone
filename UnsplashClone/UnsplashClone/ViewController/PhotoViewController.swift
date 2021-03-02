@@ -10,7 +10,7 @@ import UIKit
 final class PhotoViewController: UIViewController, ViewModelBindableType {
     
     private lazy var dataSource = createDataSource()
-    private let perPage: Int = 10
+    
     weak var coordinator: SceneCoordinatorType?
     var viewModel: PhotoViewModel!
     var kTableHeaderHeight: CGFloat = 300.0
@@ -27,7 +27,7 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
         super.viewDidAppear(animated)
         
         viewModel.fetchHeaderPhoto()
-        viewModel.fetchPhotoData(page: 1, perPage: perPage)
+        viewModel.fetchPhotoData(page: 1, perPage: CommonValues.perPage)
     }
     
     func bindViewModel() {
@@ -107,9 +107,10 @@ extension PhotoViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
+        // TODO :- detailView에 갔다오면 작동을 안함... 수정필요
         if indexPath.item == dataSource.tableView(tableView, numberOfRowsInSection: 0) - 1 {
-            let page = Int(ceil(Double(dataSource.tableView(tableView, numberOfRowsInSection: 0)) / Double(perPage))) + 1
-            viewModel.fetchPhotoData(page: page, perPage: perPage)
+            let page = Int(ceil(Double(dataSource.tableView(tableView, numberOfRowsInSection: 0)) / Double(CommonValues.perPage))) + 1
+            viewModel.fetchPhotoData(page: page, perPage: CommonValues.perPage)
         }
         
         guard let photoCell = cell as? PhotoTableViewCell,
