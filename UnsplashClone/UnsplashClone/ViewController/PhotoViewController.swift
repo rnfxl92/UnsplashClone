@@ -156,7 +156,7 @@ extension PhotoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailScene = Scene.detail(viewModel, indexPath)
+        let detailScene = Scene.detail(viewModel, indexPath, searchBar.text)
         
         coordinator?.transition(to: detailScene, using: .modal, animated: true)
     }

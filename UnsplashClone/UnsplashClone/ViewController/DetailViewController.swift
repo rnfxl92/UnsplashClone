@@ -17,7 +17,8 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
     lazy var dataSource = createDataSource()
     var viewModel: PhotoViewModel!
     var defaultIndexPath: IndexPath?
-    var firstCall = true
+    var firstCall: Bool = true
+    var query: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +38,26 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        viewModel.photoData.bind { [weak self] photos in
-            guard let self = self else { return }
-            var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
-            snapshot.appendSections([.main])
-            snapshot.appendItems(photos)
-            DispatchQueue.main.async {
-                self.dataSource.apply(snapshot)
+        
+        if query != nil {
+            viewModel.searchedPhotoData.bind { [weak self] photos in
+                guard let self = self else { return }
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(photos)
+                DispatchQueue.main.async {
+                    self.dataSource.apply(snapshot)
+                }
+            }
+        } else {
+            viewModel.photoData.bind { [weak self] photos in
+                guard let self = self else { return }
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(photos)
+                DispatchQueue.main.async {
+                    self.dataSource.apply(snapshot)
+                }
             }
         }
     }
@@ -53,7 +67,7 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
               let photo = dataSource.itemIdentifier(for: defaultIndexPath) else {
             return
         }
-
+        
         detailCollectionView.scrollToItem(at: defaultIndexPath, at: .left, animated: false)
         navigationTitleItem.title = photo.username
         firstCall = false
@@ -80,7 +94,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         return CGSize(width: detailCollectionView.frame.width, height: detailCollectionView.frame.height)
     }
 }
@@ -90,8 +104,11 @@ extension DetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == dataSource.collectionView(collectionView, numberOfItemsInSection: 0) - 1 {
             let page = Int(ceil(Double(dataSource.collectionView(collectionView, numberOfItemsInSection: 0)) / Double(CommonValues.perPage))) + 1
-            
-            viewModel.fetchPhotoData(page: page, perPage: CommonValues.perPage)
+            if let query = query {
+                viewModel.fetchSearchedPhotoData(page: page, perPage: CommonValues.perPage, query: query)
+            } else {
+                viewModel.fetchPhotoData(page: page, perPage: CommonValues.perPage)
+            }
         }
         
         guard let photoCell = cell as? DetailCollectionViewCell,
@@ -112,7 +129,7 @@ extension DetailViewController: UICollectionViewDelegate {
                     print(error)
                 }
             }
-        
+            
         }
     }
 }
