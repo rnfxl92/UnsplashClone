@@ -46,3 +46,7 @@ private extension Photo {
         case sponsored = "sponsorship"
     }
 }
+
+struct SearchedPhoto: Codable {
+    let results: [Photo]
+}

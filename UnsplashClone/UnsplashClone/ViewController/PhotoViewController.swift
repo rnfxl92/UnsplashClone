@@ -13,14 +13,17 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
     
     weak var coordinator: SceneCoordinatorType?
     var viewModel: PhotoViewModel!
-    var kTableHeaderHeight: CGFloat = 300.0
-    var headerView: UIView!
+    private var kTableHeaderHeight: CGFloat = 300.0
+    private var headerView: UIView!
+    private var isSearch: Bool = false
     
     @IBOutlet weak var photoTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        searchBar.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -31,15 +34,7 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        viewModel.photoData.bind { [weak self] photos in
-            guard let self = self else { return }
-            var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
-            snapshot.appendSections([.main])
-            snapshot.appendItems(photos)
-            DispatchQueue.main.async {
-                self.dataSource.apply(snapshot)
-            }
-        }
+        bindWithPhoto()
         
         viewModel.headerPhoto.bind { [weak self] photo in
             guard let self = self,
@@ -88,6 +83,29 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
         dataSource.apply(snapshot)
     }
     
+    private func bindWithPhoto() {
+        viewModel.photoData.bind { [weak self] photos in
+            guard let self = self else { return }
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(photos)
+            DispatchQueue.main.async {
+                self.dataSource.apply(snapshot)
+            }
+        }
+    }
+    
+    private func bindWithSearchedPhoto() {
+        viewModel.searchedPhotoData.bind { [weak self] photos in
+            guard let self = self else { return }
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(photos)
+            DispatchQueue.main.async {
+                self.dataSource.apply(snapshot)
+            }
+        }
+    }
 }
 
 extension PhotoViewController: UITableViewDelegate {
@@ -106,11 +124,14 @@ extension PhotoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         // TODO :- detailView에 갔다오면 작동을 안함... 수정필요
         if indexPath.item == dataSource.tableView(tableView, numberOfRowsInSection: 0) - 1 {
             let page = Int(ceil(Double(dataSource.tableView(tableView, numberOfRowsInSection: 0)) / Double(CommonValues.perPage))) + 1
-            viewModel.fetchPhotoData(page: page, perPage: CommonValues.perPage)
+            if (searchBar.text != nil) && isSearch {
+                viewModel.fetchSearchedPhotoData(page: page, perPage: CommonValues.perPage, query: searchBar.text!)
+            } else {
+                viewModel.fetchPhotoData(page: page, perPage: CommonValues.perPage)
+            }
         }
         
         guard let photoCell = cell as? PhotoTableViewCell,
@@ -175,5 +196,25 @@ extension PhotoViewController {
             }
         )
         return dataSource
+    }
+}
+
+extension PhotoViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let searchBarText = searchBar.text,
+              searchBarText != "" else {
+            isSearch = false
+            return
+        }
+        isSearch = true
+        bindWithSearchedPhoto()
+        viewModel.fetchSearchedPhotoData(page: 1, perPage: CommonValues.perPage, query: searchBarText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearch = false
+        searchBar.text = ""
+        bindWithPhoto()
     }
 }

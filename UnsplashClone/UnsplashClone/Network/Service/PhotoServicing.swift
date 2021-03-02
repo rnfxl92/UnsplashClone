@@ -14,7 +14,7 @@ protocol PhotoServicing {
     
     func fetchPhotos(page: Int, perPage: Int, completion: @escaping (Result<[Photo], NetworkError>) -> Void)
     
-    func fetchSearchedPhotos(page: Int, perPage: Int, query: String, completion: @escaping (Result<[Photo], NetworkError>) -> Void)
+    func fetchSearchedPhotos(page: Int, perPage: Int, query: String, completion: @escaping (Result<SearchedPhoto, NetworkError>) -> Void)
     
     func fetchRandomPhoto(completion: @escaping (Result<Photo, NetworkError>) -> Void)
 }
@@ -35,12 +35,14 @@ extension PhotoServicing {
                 completion(.failure(.networkError(error: error.localizedDescription)))
                 return
             }
+            
             if let response = response as? HTTPURLResponse {
                 guard 200..<300 ~= response.statusCode else {
                     completion(.failure(.invalidResponse(statusCode: response.statusCode)))
                     return
                 }
             }
+            
             guard let data = data else {
                 completion(.failure(.invalidData))
                 return

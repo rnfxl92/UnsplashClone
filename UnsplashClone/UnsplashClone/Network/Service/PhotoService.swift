@@ -21,8 +21,8 @@ final class PhotoService: PhotoServicing {
         }
     }
     
-    func fetchSearchedPhotos(page: Int, perPage: Int, query: String, completion: @escaping (Result<[Photo], NetworkError>) -> Void) {
-        request(dataType: [Photo].self, endPoint: UnsplashEndPoint.searchPhotos(page: page, perPage: perPage, query: query)) { result in
+    func fetchSearchedPhotos(page: Int, perPage: Int, query: String, completion: @escaping (Result<SearchedPhoto, NetworkError>) -> Void) {
+        request(dataType: SearchedPhoto.self, endPoint: UnsplashEndPoint.searchPhotos(page: page, perPage: perPage, query: query)) { result in
             completion(result)
         }
     }

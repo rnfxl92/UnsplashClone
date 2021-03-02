@@ -9,42 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search-->
-        <scene sceneID="G2u-Ng-YCH">
-            <objects>
-                <viewController storyboardIdentifier="SearchVC" id="E20-N2-Miz" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7NQ-uK-NiC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" barStyle="black" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pDE-HH-jgd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
-                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="61C-Yg-sKB">
-                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Owa-n4-aPA"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Owa-n4-aPA" firstAttribute="trailing" secondItem="61C-Yg-sKB" secondAttribute="trailing" id="2cJ-gG-RsA"/>
-                            <constraint firstItem="61C-Yg-sKB" firstAttribute="top" secondItem="pDE-HH-jgd" secondAttribute="bottom" id="3Zq-gn-uj6"/>
-                            <constraint firstItem="pDE-HH-jgd" firstAttribute="top" secondItem="Owa-n4-aPA" secondAttribute="top" id="4At-q7-VcY"/>
-                            <constraint firstItem="Owa-n4-aPA" firstAttribute="bottom" secondItem="61C-Yg-sKB" secondAttribute="bottom" id="8ig-Dc-MMM"/>
-                            <constraint firstItem="pDE-HH-jgd" firstAttribute="trailing" secondItem="Owa-n4-aPA" secondAttribute="trailing" id="KpK-Ue-ig1"/>
-                            <constraint firstItem="pDE-HH-jgd" firstAttribute="leading" secondItem="Owa-n4-aPA" secondAttribute="leading" id="bhd-zp-Dyg"/>
-                            <constraint firstItem="61C-Yg-sKB" firstAttribute="leading" secondItem="Owa-n4-aPA" secondAttribute="leading" id="gUN-ud-bKc"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="9GF-fn-rAA"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iO5-z0-rHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-339" y="323"/>
-        </scene>
         <!--Photo-->
         <scene sceneID="B2W-7W-rba">
             <objects>
@@ -124,6 +88,7 @@
                     <tabBarItem key="tabBarItem" title="Photo" image="photo.fill" catalog="system" id="fe7-Ln-HOQ"/>
                     <connections>
                         <outlet property="photoTableView" destination="iwZ-tR-had" id="OZZ-3H-HfT"/>
+                        <outlet property="searchBar" destination="Xmd-oF-dUw" id="wiI-0z-Dv4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EfR-g8-z1y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -210,11 +175,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxd-A0-by2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653.62318840579712" y="14.0625"/>
+            <point key="canvasLocation" x="478" y="-352"/>
         </scene>
     </scenes>
     <resources>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

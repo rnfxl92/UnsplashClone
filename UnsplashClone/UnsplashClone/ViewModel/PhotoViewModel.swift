@@ -13,7 +13,9 @@ class PhotoViewModel {
     let photoService: PhotoServicing
     let imageService: ImageServicing
     let photoData: Box<[Photo]> = Box([])
+    let searchedPhotoData: Box<[Photo]> = Box([])
     let headerPhoto: Box<Photo?> = Box(nil)
+    private var lastQuery = ""
     
     init(sceneCoordinator: SceneCoordinator, photoService: PhotoServicing, imageService: ImageServicing) {
         self.sceneCoordinator = sceneCoordinator
@@ -26,6 +28,22 @@ class PhotoViewModel {
             switch result {
             case .success(let photos):
                 self?.photoData.appendValue(photos)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func fetchSearchedPhotoData(page: Int, perPage: Int, query: String) {
+        photoService.fetchSearchedPhotos(page: page, perPage: perPage, query: query) { [weak self] result in
+            switch result {
+            case .success(let photos):
+                if self?.lastQuery == query {
+                    self?.searchedPhotoData.appendValue(photos.results)
+                } else {
+                    self?.searchedPhotoData.value = photos.results
+                }
+                self?.lastQuery = query
             case .failure(let error):
                 print(error)
             }
