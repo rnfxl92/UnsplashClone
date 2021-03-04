@@ -18,7 +18,7 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
     var viewModel: PhotoViewModel!
     var defaultIndexPath: IndexPath?
     var firstCall: Bool = true
-    var query: String? = nil
+    var query: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ final class DetailViewController: UIViewController, ViewModelBindableType {
     
     func bindViewModel() {
         
-        if query != nil {
+        if query != nil && query != "" {
             viewModel.searchedPhotoData.bind { [weak self] photos in
                 guard let self = self else { return }
                 var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()

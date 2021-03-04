@@ -15,7 +15,7 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
     var viewModel: PhotoViewModel!
     private var kTableHeaderHeight: CGFloat = 300.0
     private var headerView: UIView!
-    private var isSearch: Bool = false
+    var isSearch: Bool = false
     
     @IBOutlet weak var photoTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -83,8 +83,8 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
         dataSource.apply(snapshot)
     }
     
-    private func bindWithPhoto() {
-        viewModel.photoData.bind { [weak self] photos in
+    func bindWithPhoto() {
+        viewModel?.photoData.bind { [weak self] photos in
             guard let self = self else { return }
             var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
             snapshot.appendSections([.main])
@@ -95,8 +95,8 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
         }
     }
     
-    private func bindWithSearchedPhoto() {
-        viewModel.searchedPhotoData.bind { [weak self] photos in
+    func bindWithSearchedPhoto() {
+        viewModel?.searchedPhotoData.bind { [weak self] photos in
             guard let self = self else { return }
             var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
             snapshot.appendSections([.main])
@@ -124,7 +124,6 @@ extension PhotoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // TODO :- detailView에 갔다오면 작동을 안함... 수정필요
         if indexPath.item == dataSource.tableView(tableView, numberOfRowsInSection: 0) - 1 {
             let page = Int(ceil(Double(dataSource.tableView(tableView, numberOfRowsInSection: 0)) / Double(CommonValues.perPage))) + 1
             if (searchBar.text != nil) && isSearch {

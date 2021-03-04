@@ -47,6 +47,13 @@ class SceneCoordinator: SceneCoordinatorType {
         if let presentingVC = currentVC.presentingViewController {
             currentVC.dismiss(animated: animated) { [unowned self] in
                 self.currentVC = presentingVC.sceneViewController
+                if let vc = currentVC as? PhotoViewController {
+                    if vc.isSearch {
+                        vc.bindWithSearchedPhoto()
+                    } else {
+                        vc.bindWithPhoto()
+                    }
+                }
             }
         } else if let nav = currentVC.navigationController {
             guard nav.popViewController(animated: animated) != nil else {
