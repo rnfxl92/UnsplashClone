@@ -77,10 +77,18 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
         
         PhotoTableViewCell.registerNib(tableView: photoTableView)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removeKeypad))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+        
         updateHeaderView()
         var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
         snapshot.appendSections([.main])
         dataSource.apply(snapshot)
+    }
+    
+    @objc func removeKeypad() {
+        searchBar.resignFirstResponder()
     }
     
     func bindWithPhoto() {
@@ -159,7 +167,6 @@ extension PhotoViewController: UITableViewDelegate {
         
         coordinator?.transition(to: detailScene, using: .modal, animated: true)
     }
-    
 }
 
 extension PhotoViewController {
@@ -211,9 +218,14 @@ extension PhotoViewController: UISearchBarDelegate {
         viewModel.fetchSearchedPhotoData(page: 1, perPage: CommonValues.perPage, query: searchBarText)
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearch = false
         searchBar.text = ""
         bindWithPhoto()
+        searchBar.resignFirstResponder()
     }
 }

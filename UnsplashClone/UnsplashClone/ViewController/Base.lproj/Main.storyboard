@@ -75,6 +75,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YzT-tD-Syf"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="iwZ-tR-had" firstAttribute="leading" secondItem="YzT-tD-Syf" secondAttribute="leading" id="E8h-gC-JdA"/>
                             <constraint firstItem="Xmd-oF-dUw" firstAttribute="trailing" secondItem="YzT-tD-Syf" secondAttribute="trailing" id="S3v-aj-67W"/>
