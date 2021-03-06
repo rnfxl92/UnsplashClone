@@ -10,7 +10,7 @@
 ### 3. 스크롤 끝에 도달하면 정해진 갯수(10개)씩 필요할때 마다 Photo를 받아옴  
 <img src="https://user-images.githubusercontent.com/33716159/110193727-0d0c8900-7e79-11eb-9125-697a18d482a2.gif" width=300>
 
-### DiffableDatasource를 사용하여 search를 통해 dataSource 바뀔 때 애니메이션 됨 
+### 4. DiffableDatasource를 사용하여 search를 통해 dataSource 바뀔 때 애니메이션 됨 
 <img src="https://user-images.githubusercontent.com/33716159/110194207-b0aa6900-7e7a-11eb-98dc-67032f6920c8.gif" width=300>
 
 ### 기타
