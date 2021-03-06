@@ -118,18 +118,16 @@ extension DetailViewController: UICollectionViewDelegate {
         }
         
         let width = Int(collectionView.frame.width * UIScreen.main.scale)
-        DispatchQueue.global().async { [weak self] in
-            self?.viewModel.fetchImage(url: photo.photoURLs.raw, width: width) { result in
-                switch result {
-                case .success(let image):
-                    DispatchQueue.main.async {
-                        photoCell.configureImage(image: image)
-                    }
-                case .failure(let error):
-                    print(error)
+        
+        viewModel.fetchImage(url: photo.photoURLs.raw, width: width) { result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    photoCell.configureImage(image: image)
                 }
+            case .failure(let error):
+                print(error)
             }
-            
         }
     }
 }
@@ -153,19 +151,17 @@ extension DetailViewController {
                         as? DetailCollectionViewCell else { return UICollectionViewCell() }
                 
                 let width = Int(self.view.frame.width * UIScreen.main.scale)
-                DispatchQueue.global().async {
-                    self.viewModel.fetchImage(url: photo.photoURLs.raw, width: width) { result in
-                        switch result {
-                        case .success(let image):
-                            DispatchQueue.main.async {
-                                cell.configureImage(image: image)
-                            }
-                        case .failure(let error):
-                            print(error)
+                
+                viewModel.fetchImage(url: photo.photoURLs.raw, width: width) { result in
+                    switch result {
+                    case .success(let image):
+                        DispatchQueue.main.async {
+                            cell.configureImage(image: image)
                         }
+                    case .failure(let error):
+                        print(error)
                     }
                 }
-                
                 return cell
             })
         return dataSource

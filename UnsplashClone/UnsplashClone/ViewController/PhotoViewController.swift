@@ -148,16 +148,14 @@ extension PhotoViewController: UITableViewDelegate {
         }
         
         let width = Int(view.frame.width * UIScreen.main.scale)
-        DispatchQueue.global().async { [weak self] in
-            self?.viewModel.fetchImage(url: photo.photoURLs.regular, width: width) { result in
-                switch result {
-                case .success(let image):
-                    DispatchQueue.main.async {
-                        photoCell.configureCell(image: image)
-                    }
-                case .failure(let error):
-                    print(error)
+        viewModel.fetchImage(url: photo.photoURLs.regular, width: width) { result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    photoCell.configureCell(image: image)
                 }
+            case .failure(let error):
+                print(error)
             }
         }
     }
