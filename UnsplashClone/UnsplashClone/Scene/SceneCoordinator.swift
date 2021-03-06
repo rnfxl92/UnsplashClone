@@ -45,6 +45,13 @@ class SceneCoordinator: SceneCoordinatorType {
     
     func close(animated: Bool) {
         if let presentingVC = currentVC.presentingViewController {
+            let indexPath: IndexPath? = {
+                if let vc = currentVC as? DetailViewController {
+                    return vc.detailCollectionView.visibleIndexPath
+                }
+                return nil
+            }()
+            
             currentVC.dismiss(animated: animated) { [unowned self] in
                 self.currentVC = presentingVC.sceneViewController
                 if let vc = currentVC as? PhotoViewController {
@@ -52,6 +59,9 @@ class SceneCoordinator: SceneCoordinatorType {
                         vc.bindWithSearchedPhoto()
                     } else {
                         vc.bindWithPhoto()
+                    }
+                    if let indexPath = indexPath {
+                        vc.photoTableView.scrollToRow(at: indexPath, at: .top, animated: true)
                     }
                 }
             }
