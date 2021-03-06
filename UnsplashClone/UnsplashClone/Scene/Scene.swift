@@ -10,7 +10,6 @@ import UIKit
 enum Scene {
     case photo(PhotoViewModel)
     case detail(PhotoViewModel, IndexPath, String?)
-    case search
 }
 
 extension Scene {
@@ -37,16 +36,11 @@ extension Scene {
         DispatchQueue.main.async {
             vc.bind(viewModel: viewModel)
         }
+        vc.modalPresentationStyle = .fullScreen
         vc.coordinator = sceneCoordinator
         vc.defaultIndexPath = indexPath
         vc.query = query
         
-        return vc
-      case .search:
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "SearchVC") as? UITabBarController
-        else {
-           fatalError()
-        }
         return vc
       }
    }
