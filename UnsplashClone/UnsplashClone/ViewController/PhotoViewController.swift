@@ -13,7 +13,7 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
     
     weak var coordinator: SceneCoordinatorType?
     var viewModel: PhotoViewModel!
-    private var kTableHeaderHeight: CGFloat = 300.0
+    private lazy var photoTableHeaderHeight: CGFloat = view.frame.height / 3
     private var headerView: UIView!
     var isSearch: Bool = false
     
@@ -24,13 +24,6 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
         super.viewDidLoad()
         configureTableView()
         searchBar.delegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        viewModel.fetchHeaderPhoto()
-        viewModel.fetchPhotoData(page: 1, perPage: CommonValues.perPage)
     }
     
     func bindViewModel() {
@@ -62,6 +55,9 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
                 }
             }
         }
+        
+        viewModel.fetchHeaderPhoto()
+        viewModel.fetchPhotoData(page: 1, perPage: CommonValues.perPage)
     }
     
     private func configureTableView() {
@@ -72,8 +68,8 @@ final class PhotoViewController: UIViewController, ViewModelBindableType {
         headerView = photoTableView.tableHeaderView
         photoTableView.tableHeaderView = nil
         photoTableView.addSubview(headerView)
-        photoTableView.contentInset = UIEdgeInsets(top: kTableHeaderHeight, left: 0, bottom: 0, right: 0)
-        photoTableView.contentOffset = CGPoint(x: 0, y: -kTableHeaderHeight)
+        photoTableView.contentInset = UIEdgeInsets(top: photoTableHeaderHeight, left: 0, bottom: 0, right: 0)
+        photoTableView.contentOffset = CGPoint(x: 0, y: -photoTableHeaderHeight)
         
         PhotoTableViewCell.registerNib(tableView: photoTableView)
         
@@ -160,26 +156,25 @@ extension PhotoViewController: UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailScene = Scene.detail(viewModel, indexPath, searchBar.text)
         
         coordinator?.transition(to: detailScene, using: .modal, animated: true)
     }
-}
 
-extension PhotoViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateHeaderView()
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
+    /// tableView를 scroll하여 기본 .contentOffset.y가 photoTableHeaderHeight보다 더 내려갔으면 headerView height를 그만큼 늘려줌
     func updateHeaderView() {
         
-        var headerRect = CGRect(x: 0, y: -kTableHeaderHeight, width: photoTableView.bounds.width, height: kTableHeaderHeight)
-        if photoTableView.contentOffset.y < -kTableHeaderHeight {
+        var headerRect = CGRect(x: 0, y: -photoTableHeaderHeight, width: photoTableView.bounds.width, height: photoTableHeaderHeight)
+        if photoTableView.contentOffset.y < -photoTableHeaderHeight {
             headerRect.origin.y = photoTableView.contentOffset.y
             headerRect.size.height = -photoTableView.contentOffset.y
         }
